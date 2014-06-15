@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<decision id="todoSaturday">
+			<state id="GoOutWithFriends" />
+			<state id="GoSeeMovieWithFriends" />
+			<state id="StayHomeWatchMovie" />
+			<state id="StayHomePlayGame" />
+			<state id="StayHomeDoHomeWork" />
+		</decision>
+		<cpt id="NewMovie">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.8 0.2</probabilities>
+		</cpt>
+		<cpt id="TimeSinceSeenFriends">
+			<state id="MoreThanTwoWeek" />
+			<state id="LessThanTwoWeek" />
+			<probabilities>0.6 0.4</probabilities>
+		</cpt>
+		<cpt id="GettingDrunk">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>todoSaturday</parents>
+			<probabilities>0.99 0.01 0 1 0 1 0 1 0 1</probabilities>
+		</cpt>
+		<cpt id="Broke">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>GettingDrunk</parents>
+			<probabilities>0.05 0.95 0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="TimeUntillExams">
+			<state id="MoreThanOneMonth" />
+			<state id="LessThanOneMonth" />
+			<probabilities>0.67 0.33</probabilities>
+		</cpt>
+		<cpt id="MeetGirl">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>GettingDrunk</parents>
+			<probabilities>0.1 0.9 0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="EatKebab">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>GettingDrunk</parents>
+			<probabilities>0.2 0.8 0 1</probabilities>
+		</cpt>
+		<cpt id="GettingHangover">
+			<state id="Yes" />
+			<state id="No" />
+			<parents>EatKebab GettingDrunk</parents>
+			<probabilities>0.6 0.4 0 1 0.4 0.6 0 1</probabilities>
+		</cpt>
+		<cpt id="NewGame">
+			<state id="Yes" />
+			<state id="No" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="AmountOfHomework">
+			<state id="None" />
+			<state id="Some" />
+			<state id="Much" />
+			<probabilities>0.1 0.7 0.2</probabilities>
+		</cpt>
+		<utility id="Cost">
+			<parents>todoSaturday EatKebab GettingDrunk</parents>
+			<utilities>-50 -10 -40 -10 -30 -20 -20 -10 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="Enjoyment">
+			<parents>MeetGirl Broke GettingHangover</parents>
+			<utilities>500 500 500 500 -150 -100 -50 0</utilities>
+		</utility>
+		<utility id="Enjoyment_">
+			<parents>todoSaturday NewGame NewMovie</parents>
+			<utilities>0 0 0 0 50 0 50 0 30 10 30 10 40 40 10 10 0 0 0 0</utilities>
+		</utility>
+		<utility id="Responsibility">
+			<parents>todoSaturday TimeUntillExams TimeSinceSeenFriends AmountOfHomework</parents>
+			<utilities>80 80 80 50 50 50 20 20 20 20 20 20 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 50 100 0 50 100 300 300 300 300 300 300</utilities>
+		</utility>
+		<decision id="todo">
+			<state id="Work" />
+			<state id="Festival" />
+			<state id="Syden" />
+			<state id="Cabin" />
+			<state id="Home" />
+			<state id="Hiking" />
+			<state id="TouristAttraction" />
+		</decision>
+		<cpt id="RetakeExams">
+			<state id="True" />
+			<state id="False" />
+			<parents>todo</parents>
+			<probabilities>0.7 0.3 0.2 0.8 0.3 0.7 0.6 0.4 0.9 0.1 0.4 0.6 0.3 0.7</probabilities>
+		</cpt>
+		<cpt id="GetFriendsToJoin">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Money">
+			<state id="Lots" />
+			<state id="Some" />
+			<state id="AlmostBorke" />
+			<probabilities>0.5 0.5 0</probabilities>
+		</cpt>
+		<cpt id="Copy_2_of_Node4">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_3_of_Node4">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_4_of_Node4">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="job">
+			<state id="True" />
+			<state id="False" />
+			<parents>todo</parents>
+			<probabilities>1 0 0.1 0.9 0.1 0.9 0.5 0.5 0.8 0.2 0.1 0.9 0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Tripcost">
+			<state id="High" />
+			<state id="Medium" />
+			<state id="Low" />
+			<parents>todo</parents>
+			<probabilities>0.2 0.3 0.5 0.6 0.4 0 0.8 0.2 0 0.3 0.4 0.3 0.1 0.4 0.5 0.5 0.4 0.1 0.8 0.2 0</probabilities>
+		</cpt>
+		<cpt id="WantToGoAbroad">
+			<state id="True" />
+			<state id="False" />
+			<parents>RetakeExams job Tripcost</parents>
+			<probabilities>0.05 0.95 0.05 0.95 0.5 0.5 0.1 0.9 0.1 0.9 0.5 0.5 0.3 0.7 0.3 0.7 0.5 0.5 0.8 0.2 0.8 0.2 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_3_of_Node2">
+			<state id="Choice0" />
+			<state id="Choice1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_4_of_Node2">
+			<state id="Choice0" />
+			<state id="Choice1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_5_of_Node2">
+			<state id="Choice0" />
+			<state id="Choice1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Copy_6_of_Node2">
+			<state id="Choice0" />
+			<state id="Choice1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="NiceBandLinup">
+			<state id="True" />
+			<state id="False" />
+			<parents>WantToGoAbroad</parents>
+			<probabilities>0.8 0.2 0.6 0.4</probabilities>
+		</cpt>
+		<cpt id="NiceWeathercast">
+			<state id="True" />
+			<state id="False" />
+			<parents>WantToGoAbroad</parents>
+			<probabilities>0.8 0.2 0.7 0.3</probabilities>
+		</cpt>
+		<cpt id="NoInjury">
+			<state id="True" />
+			<state id="False" />
+			<parents>WantToGoAbroad</parents>
+			<probabilities>0.1 0.9 0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="MoneyLeft">
+			<state id="High" />
+			<state id="Medium" />
+			<state id="Low" />
+			<parents>job Tripcost</parents>
+			<probabilities>0.5 0.5 0 0.5 0.5 0 0.5 0.5 0 0.5 0.5 0 0.5 0.5 0 0.5 0.5 0</probabilities>
+		</cpt>
+		<cpt id="SommerJobb">
+			<state id="Choice0" />
+			<state id="Choice1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<utility id="Utility">
+			<parents>MoneyLeft NiceBandLinup NiceWeathercast NoInjury</parents>
+			<utilities>1000 200 800 150 700 0 -100 -50 700 100 600 75 0 0 0 0 400 0 300 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="Copy_of_Utility">
+			<utilities>0</utilities>
+		</utility>
+		<utility id="Copy_2_of_Utility">
+			<utilities>0</utilities>
+		</utility>
+		<utility id="Copy_3_of_Utility">
+			<utilities>0</utilities>
+		</utility>
+		<utility id="Utility2">
+			<parents>todo GetFriendsToJoin Money</parents>
+			<utilities>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</utilities>
+		</utility>
+		<utility id="Costmoney">
+			<utilities>0</utilities>
+		</utility>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network1" faultnameformat="nodestate">
+			<node id="todoSaturday">
+				<name>What to do on saturday</name>
+				<interior color="00ffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="12" />
+				<position>67 106 243 208</position>
+				<barchart active="true" width="307" height="132" />
+			</node>
+			<node id="NewMovie">
+				<name>New Movie</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>510 162 611 235</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="GettingDrunk">
+				<name>Getting Drunk</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>16 245 114 294</position>
+			</node>
+			<node id="TimeUntillExams">
+				<name>Time Untill Exams</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>278 2 383 87</position>
+				<barchart active="true" width="209" height="64" />
+			</node>
+			<node id="MeetGirl">
+				<name>Meet Girl</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>159 235 273 291</position>
+			</node>
+			<node id="GettingHangover">
+				<name>Getting Hangover</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>306 373 420 428</position>
+			</node>
+			<node id="NewGame">
+				<name>New Game</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>512 81 610 157</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Broke">
+				<name>Broke</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>175 309 276 371</position>
+			</node>
+			<node id="EatKebab">
+				<name>Eat Kebab</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>18 342 112 386</position>
+			</node>
+			<node id="AmountOfHomework">
+				<name>Amount Of Homework</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>77 8 186 83</position>
+				<barchart active="true" width="168" height="72" />
+			</node>
+			<node id="TimeSinceSeenFriends">
+				<name>Time Since Last Seen Friends</name>
+				<interior color="ccffcc" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>490 -1 597 87</position>
+				<barchart active="true" width="201" height="64" />
+			</node>
+			<node id="Cost">
+				<name>Cost?</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>144 420 280 496</position>
+			</node>
+			<node id="Enjoyment">
+				<name>Enjoyment?</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>328 277 461 337</position>
+			</node>
+			<node id="Enjoyment_">
+				<name>Enjoyment?</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>336 190 467 256</position>
+			</node>
+			<node id="Responsibility">
+				<name>Responsibility?</name>
+				<interior color="00ff00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>328 102 465 176</position>
+			</node>
+			<node id="todo">
+				<name>Summer Holiday</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>905 210 1175 390</position>
+				<barchart active="true" width="319" height="145" />
+			</node>
+			<node id="RetakeExams">
+				<name>Retake Exams</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1236 354 1402 446</position>
+			</node>
+			<node id="GetFriendsToJoin">
+				<name>Get Friends to join</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>929 50 977 80</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Money">
+				<name>Money</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1114 48 1162 78</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="Copy_2_of_Node4">
+				<name>Copy (2) of Node4</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>457 488 505 518</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Copy_3_of_Node4">
+				<name>Copy (3) of Node4</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>616 653 664 683</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Copy_4_of_Node4">
+				<name>Copy (4) of Node4</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>613 514 661 544</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="job">
+				<name>Get NiceJob</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>768 424 934 516</position>
+			</node>
+			<node id="WantToGoAbroad">
+				<name>Want To Go Abroad</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1264 526 1430 618</position>
+			</node>
+			<node id="Copy_3_of_Node2">
+				<name>Copy (3) of Node2</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>328 647 494 739</position>
+			</node>
+			<node id="Copy_4_of_Node2">
+				<name>Copy (4) of Node2</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>316 646 482 738</position>
+			</node>
+			<node id="Copy_5_of_Node2">
+				<name>Copy (5) of Node2</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>341 658 507 750</position>
+			</node>
+			<node id="Copy_6_of_Node2">
+				<name>Copy (6) of Node2</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>359 661 525 753</position>
+			</node>
+			<node id="NiceBandLinup">
+				<name>Nice Band Linup</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1062 586 1228 678</position>
+			</node>
+			<node id="NiceWeathercast">
+				<name>Nice Weathercast</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1197 677 1363 769</position>
+			</node>
+			<node id="NoInjury">
+				<name>No Injury</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1350 762 1516 854</position>
+			</node>
+			<node id="Tripcost">
+				<name>TripCost</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>985 409 1151 501</position>
+			</node>
+			<node id="MoneyLeft">
+				<name>Money Left</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>817 629 983 721</position>
+			</node>
+			<node id="SommerJobb">
+				<name>SommerJobb</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>393 675 559 767</position>
+			</node>
+			<node id="Utility">
+				<name>Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1039 804 1188 855</position>
+			</node>
+			<node id="Copy_of_Utility">
+				<name>Copy of Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>280 801 429 852</position>
+			</node>
+			<node id="Copy_2_of_Utility">
+				<name>Copy (2) of Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>288 809 437 860</position>
+			</node>
+			<node id="Copy_3_of_Utility">
+				<name>Copy (3) of Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>296 817 445 868</position>
+			</node>
+			<node id="Utility2">
+				<name>Utility</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>957 142 1106 193</position>
+			</node>
+			<node id="Costmoney">
+				<name>Cost</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>540 822 689 873</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>

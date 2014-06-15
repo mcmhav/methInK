@@ -1,0 +1,8 @@
+function props = smooth(PF, PB)
+tem2 = [];                 % initiate tem2
+for i = 1:2:length(PF)*2   % go trough the 
+    tem = [PF(i); PF(i+1)] * [PB(i) PB(i+1)];
+    a = 1/(tem(1) + tem(4));
+    tem2 = [tem2 [tem(1)*a; tem(4)*a]];
+end
+props = tem2;
